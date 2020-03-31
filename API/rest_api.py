@@ -52,8 +52,8 @@ def add_framework():
     typeofdep = request.json['results']['type']
     stage = request.json['results']['stage']
     suicidalProbability = request.json['results']['suicidalProbability']
-    userResults.insert_one({'name' : name, 'contact' :{ 'email' : email},'psycheMetrics':{'age':age,'sex':age,'anxiety':anxiety,'irritation' :irritation,'laziness' : laziness,'lowSelfWorth' : lowSelfWorth,'suicidalThoughts' : suicidalThoughts,'guilt' : guilt,'abnormalAppetite' : abnormalAppetite,'negativeThoughts' : negativeThoughts,'jealousy' : jealousy,'aggresiveness' : aggresiveness,'concentration' : concentration,'wrongDecisions' : wrongDecisions }, 'results':{'type':typeofdep, 'stage': stage,'suicidalProbability': suicidalProbability}})
-    return "success"
+    document = userResults.insert_one({'name' : name, 'contact' :{ 'email' : email},'psycheMetrics':{'age':age,'sex':age,'anxiety':anxiety,'irritation' :irritation,'laziness' : laziness,'lowSelfWorth' : lowSelfWorth,'suicidalThoughts' : suicidalThoughts,'guilt' : guilt,'abnormalAppetite' : abnormalAppetite,'negativeThoughts' : negativeThoughts,'jealousy' : jealousy,'aggresiveness' : aggresiveness,'concentration' : concentration,'wrongDecisions' : wrongDecisions }, 'results':{'type':typeofdep, 'stage': stage,'suicidalProbability': suicidalProbability}})
+    return document.inserted_id
 
 if __name__ == '__main__':
     app.run(debug=True)
